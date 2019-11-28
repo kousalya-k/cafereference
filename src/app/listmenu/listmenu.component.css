@@ -1,0 +1,7 @@
+.image{
+    background:url(..\..\assets\bg10.jpg) ;
+    background-position-x: center;
+   background-position-y: center; 
+   background-size: cover;
+   padding-block-end: 6.4cm;
+}

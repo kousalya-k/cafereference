@@ -7,6 +7,7 @@ import { Item, Menu } from '../modal'
   providedIn: 'root'
 })
 export class CreateService {
+  
 
 
   constructor(private httpClient: HttpClient) { }
@@ -23,6 +24,11 @@ export class CreateService {
     console.log(id)
     return this.httpClient.get<Item[]>('http://10.231.139.34:7001//items' + "/" + id);
 
+  }
+  getItemsbyCuisine(cuisineid:string[]) {
+    console.log("inside service"+cuisineid)
+    console.log("inside service"+typeof(cuisineid))
+    return  this.httpClient.get<Item[]>('http://10.231.139.34:7001//items/findbycuisine/'+cuisineid);
   }
   public createMenu(ids) {
     console.log("Service ids arr "+ids)

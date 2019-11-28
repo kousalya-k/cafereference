@@ -42,10 +42,13 @@ export class OrderComponent implements OnInit {
     this.orders = response;
     console.log("orders "+this.orders)
     for(var i in this.orders){
-    console.log(this.orders[i].items)
+      for( var j in this.orders[i].listItems){
+        console.log(this.orders[i].listItems[j].item.itemName)
+      }
+    
     }
   }
-
+  
   accept(id:string){
     console.log(id)
    this.oService.acceptedStat(id).subscribe(resp => console.log("success"));

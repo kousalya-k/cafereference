@@ -2,7 +2,7 @@ export class Orders {
        id: string;
        user: User;
       counter: Counter;
-      items: Item[];
+      listItems: ItemQuantity[];
        status:string
    
   }
@@ -12,7 +12,7 @@ export class Orders {
       itemDesc:string;
       itemPrice:string;
       itemCuisine:string;
-      isAvailable:string;
+      itemQuantity:number;
     
   }
   export class Counter{
@@ -42,8 +42,11 @@ export class You{
             public lis:string[]
         ){}
     }
-    //   id:string;
-    //   counter:Counter;
-    //   selectCuisine:string
-    //   menuList:Item[]
+    export class ItemQuantity{
+        id:string;
+        item:Item;
+        quant:number;
+
+    }
+    
   

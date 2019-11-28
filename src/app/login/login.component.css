@@ -1,19 +1,19 @@
 .jumbo{
-    background:url(..\..\assets\bg2.jpg) ;
-   /* background-position-x: center;
-   background-position-y: center; */
+    background:url(..\..\assets\bg7.jpeg) ;
+    background-position-x: center;
+   background-position-y: center; 
    background-size: cover;
    }
    .jj{
-       color: white;
+       color:white;
        text-align: center;
    }
    
-   .col-4{
-       margin-top: 2cm;
+   .col-5{
+       margin: 1cm;
        background-color: whitesmoke;
-       border-radius: 12px; 
-         
+       border-radius: 12px;
+        padding: 2cm;
       }
    .row1{
        padding-block-end: 6.4cm;

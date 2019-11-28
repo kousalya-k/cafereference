@@ -23,25 +23,25 @@ export class AuthenticationService {
       
       this.email.push(this.counters[i].counterEmail);
       this.pwd.push(this.counters[i].counterPassword);
-      console.log("Inside created place "+this.email);
+      //console.log("Inside created place "+this.email);
     }
   }
   
   authenticate(username, password) {
-    console.log("Username "+username)
+    //console.log("Username "+username)
 
    
   
     for(var i in this.email)
     {
-      console.log("Enters for ")
-      console.log(this.email[i])
+      //console.log("Enters for ")
+      //console.log(this.email[i])
       if(this.email[i] === username )
       {
-          console.log("username correct")
+          //console.log("username correct")
           if(this.pwd[i]===password)
           {
-            console.log("pwd correct")
+           // console.log("pwd correct")
             //enters
             sessionStorage.setItem('username', username)
             this.flag=1;
@@ -77,7 +77,7 @@ export class AuthenticationService {
 
   isUserLoggedIn() {
     let user = sessionStorage.getItem('username')
-    console.log(!(user === null))
+    //console.log(!(user === null))
     return !(user === null)
   }
 
