@@ -1,0 +1,25 @@
+<div class="col-md-6">
+       
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                   
+                    <th>Menuid</th>
+                    <th>Menulist</th>
+                    
+                    
+                </tr>
+            </thead>
+<tbody>
+     
+        <tr *ngFor="let i of menus"><td>
+                {{i.id}}
+        </td>
+        <div *ngFor="let k of i.menuList">
+        <td>{{k.itemName}}</td>
+    </div>
+<!-- 
+        <td><button type="submit" class="btn btn-primary btn-small" (click)="createmenulist(i.id)" >Add</button></td> -->
+      
+    </tr>
+</tbody>

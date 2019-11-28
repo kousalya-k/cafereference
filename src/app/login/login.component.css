@@ -1,0 +1,21 @@
+.jumbo{
+    background:url(..\..\assets\bg2.jpg) ;
+   /* background-position-x: center;
+   background-position-y: center; */
+   background-size: cover;
+   }
+   .jj{
+       color: white;
+       text-align: center;
+   }
+   
+   .col-4{
+       margin-top: 2cm;
+       background-color: whitesmoke;
+       border-radius: 12px; 
+         
+      }
+   .row1{
+       padding-block-end: 6.4cm;
+   }
+   

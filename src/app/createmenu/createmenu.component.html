@@ -1,0 +1,69 @@
+<div class="container-fluid">
+       
+<div class="row">
+<div class="col-md-6">
+       
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                   
+                    <th>Itemid</th>
+                    <th>ItemName</th>
+                    <th>ItemDesc</th>
+                    <th>ItemPrice</th>
+                    
+                </tr>
+            </thead>
+<tbody>
+     
+        <tr *ngFor="let i of items"><td>
+                {{i.id}}
+        </td>
+        <td>{{i.itemName}}</td>
+        <td>{{i.itemDesc}}</td>
+        <td>{{i.itemPrice}}</td>
+
+        <td><button type="submit" class="btn btn-primary btn-small" (click)="createmenulist(i.id)" >Add</button></td>
+      
+    </tr>
+</tbody>
+
+
+
+</table>
+<div>
+        <button type="submit" class="btn btn-primary" (click)="confirm()" >Submit</button>
+</div>
+</div>
+<div class= "col-md-6">
+        <table class="table table-striped">
+                <thead>
+                    <tr>
+                       
+                        <th>Itemid</th>
+                        <th>ItemName</th>
+                        <th>ItemDesc</th>
+                        <th>ItemPrice</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                        
+                        <tr *ngFor="let s of selItems"><td>
+                                {{s.id}}
+                        </td>
+                        <td>{{s.itemName}}</td>
+                        <td>{{s.itemDesc}}</td>
+                        <td>{{s.itemPrice}}</td>
+                        <td><button type="submit" class="btn btn-danger btn-small" (click)="deletelist(s.id,s)" >Delete</button></td>
+ 
+                    </tr>
+                </tbody>
+                
+                
+                
+                </table>
+
+</div>
+</div>
+</div>  
