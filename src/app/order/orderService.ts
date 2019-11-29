@@ -14,8 +14,8 @@ url:string='';
   
   getOrders(counterId) {
     console.log("test call counter"+counterId);
-    
-    return this.httpClient.get<Orders[]>('http://10.231.139.34:5000//ordersbycounter'+"/"+counterId);
+    console.log('http://10.231.136.18:5000//ordersbycounter'+"/"+counterId)
+    return this.httpClient.get<Orders[]>('http://10.231.136.18:5000//ordersbycounter'+"/"+counterId);
     
   }
   getCounter() {
@@ -26,17 +26,17 @@ url:string='';
   }
 
   acceptedStat(id:string){
-    this.url = 'http://10.231.139.34:5000/orders/Accepted/'+id;
+    this.url = 'http://10.231.136.18:5000/orders/Accepted/'+id;
     console.log(this.url)
     return this.httpClient.put<string>(this.url,0);
   }
   readyStat(id:string){
-    this.url = 'http://10.231.139.34:5000/orders/Ready/'+id;
+    this.url = 'http://10.231.136.18:5000/orders/Ready/'+id;
     console.log(this.url)
     return this.httpClient.put<string>(this.url,0);
   }
   deliveredStat(id:string){
-    this.url = 'http://10.231.139.34:5000/orders/Delivered/'+id;
+    this.url = 'http://10.231.136.18:5000/orders/Delivered/'+id;
     console.log(this.url)
     return this.httpClient.put<string>(this.url,0);
   }

@@ -1,5 +1,5 @@
 <div class="container-fluid"><br>
-        <div><strong>Available Cuisine:</strong> </div>
+        <div style = "margin-top: 1cm;" ><strong>Available Cuisine:</strong> </div>
         <br>
         <!-- <div>&nbsp;
         &nbsp; <input type="checkbox" class="form-check-input" value="north" name="chk">NorthIndian &nbsp; &nbsp; &nbsp; &nbsp;
@@ -10,10 +10,13 @@
     </div><br>
     <button type="submit" class="btn btn-primary btn-small" (click)="filter()" >Filter</button> -->
     <form [formGroup]="form" (submit)="submit(form.value)">
-            <div *ngFor="let skill of skills.controls; let i=index">
-             <input type="checkbox" [formControl]="skill" value="{{user.skills[i].name}}"/> {{user.skills[i].name}}
-            </div>
-            <button type="submit">Filter</button>
+        <table>
+            <tr>
+            <td *ngFor="let skill of skills.controls; let i=index">
+             <input type="checkbox" [formControl]="skill" value="{{user.skills[i].name}}"/> {{user.skills[i].name}} &nbsp;&nbsp;
+            </td>
+            &nbsp; <button type="submit" class="btn btn-outline-info  btn-sm">Filter</button></tr>  
+        </table>
            </form>
   <br><br>
 <div class="row">
@@ -40,7 +43,7 @@
         <td>{{i.itemDesc}}</td>
         <td>{{i.itemPrice}}</td>
 
-        <td><button type="submit" class="btn btn-primary btn-small" (click)="createmenulist(i.id)" >Add</button></td>
+        <td><button type="submit" class="btn btn-outline-success  btn-sm" (click)="createmenulist(i.id)" >Add</button></td>
       
     </tr>
 </tbody>
@@ -72,7 +75,7 @@
                         <td>{{s.itemName}}</td>
                         <td>{{s.itemDesc}}</td>
                         <td>{{s.itemPrice}}</td>
-                        <td><button type="submit" class="btn btn-danger btn-small" (click)="deletelist(s.id,s)" >Delete</button></td>
+                        <td><button type="submit" class="btn btn-outline-danger  btn-sm" (click)="deletelist(s.id,s)" >Delete</button></td>
  
                     </tr>
                 </tbody>

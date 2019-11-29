@@ -4,6 +4,7 @@ export class Orders {
       counter: Counter;
       listItems: ItemQuantity[];
        status:string
+       date:String;
    
   }
   export class Item{

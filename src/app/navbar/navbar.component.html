@@ -1,21 +1,29 @@
-<div class="container-fluid"><nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<div class="container">
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+       
+                <a class="navbar-brand" href="#" >
+                        <img src="..\..\assets\dxc1.png" width="30" height="30" class="d-inline-block align-top" alt="">
 
+                 <span style="margin-top: 5px;"> Cafe</span>   </a>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ml-auto">
+        <ul class="navbar-nav mr-auto">
             <!-- <li class="nav-item"><a *ngIf="!loginService.isUserLoggedIn()" routerLink="login" class="nav-link" href="#">LOGIN</a>
             </li> -->
             <!-- <li class="nav-item"><a *ngIf="loginService.isUserLoggedIn()" routerLink="home" class="nav-link" href="#">Home</a>
             </li> -->
-            <li class="nav-item"><a *ngIf="loginService.isUserLoggedIn()" routerLink="order" class="nav-link" href="#">Order</a>
+            <li class="nav-item"><a *ngIf="loginService.isUserLoggedIn()" routerLink="order" class="nav-link" style="color: white;">Order</a>
             </li>
           
-            <li class="nav-item"><a *ngIf="loginService.isUserLoggedIn()" routerLink="createmenu" class="nav-link" href="#">Create Menu</a>
+            <li class="nav-item"><a *ngIf="loginService.isUserLoggedIn()" routerLink="createmenu" class="nav-link" style="color: white;" href="#">Create Menu</a>
             </li>
-            <li class="nav-item"><a *ngIf="loginService.isUserLoggedIn()" routerLink="listmenu" class="nav-link" href="#">List Menu</a>
+            <li class="nav-item"><a *ngIf="loginService.isUserLoggedIn()" routerLink="listmenu" class="nav-link" style="color: white;" href="#">List Menu</a>
             </li>
-            <li class="nav-item"><a *ngIf="loginService.isUserLoggedIn()" routerLink="logout" class="nav-link" href="#">Logout</a>
-            </li>
+            <!-- <li class="nav-item"><a *ngIf="loginService.isUserLoggedIn()" routerLink="logout" class="nav-link" href="#">Logout</a>
+            </li> -->
         </ul>
+        <form class="form-inline my-2 my-lg-0">
+                <button class="btn btn-outline-light my-2 my-sm-0" type="submit" *ngIf="loginService.isUserLoggedIn()" routerLink="logout">Logout</button>
+              </form>
 
     </div>
 </nav>
