@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 
 import { HttpClient } from '@angular/common/http';
-import { Item, Menu } from '../modal'
+import { Item, Menu, Counter } from '../modal'
 
 @Injectable({
   providedIn: 'root'
 })
 export class CreateService {
-  
-
+  menu: Menu;
+  counter: Counter;
 
   constructor(private httpClient: HttpClient) { }
  
@@ -25,14 +25,20 @@ export class CreateService {
     return this.httpClient.get<Item[]>('http://10.231.139.34:7001//items' + "/" + id);
 
   }
-  getItemsbyCuisine(cuisineid:string[]) {
+  getItemsbyCuisine(cuisineid:string) {
     console.log("inside service"+cuisineid)
     console.log("inside service"+typeof(cuisineid))
     return  this.httpClient.get<Item[]>('http://10.231.139.34:7001//items/findbycuisine/'+cuisineid);
   }
-  public createMenu(ids) {
-    console.log("Service ids arr "+ids)
-    return this.httpClient.post<Menu>("http://10.231.139.34:7001/menu/kk"+ "/" + "c005", ids);
+  getCounterById(id:string){
+    return this.httpClient.get<Counter>("http://10.231.139.34:7001/counters/"+id);
+  }
+  public createMenu(items,counter,date:string) {
+    
+    //console.log("Service ids arr "+ids)
+    this.menu = new Menu(counter,date,items)
+    console.log(this.menu);
+    return this.httpClient.post<Menu>("http://10.231.139.34:7001/menu",this.menu);
   }
   
 }

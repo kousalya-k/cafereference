@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-
+import { SessionStorageService } from 'angular-web-storage';
 import { HttpClient } from '@angular/common/http';
 import {Menu} from '../modal'
 
@@ -7,14 +7,14 @@ import {Menu} from '../modal'
   providedIn: 'root'
 })
 export class ListService {
-  
+  id:string;
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient,private session: SessionStorageService) { }
   
   
   getMenus() {
+    this.id=this.session.get("counterId");
     
-    
-    return this.httpClient.get<Menu>('http://10.231.139.34:7001//menu');
+    return this.httpClient.get<Menu>('http://10.231.139.34:7001//menu/menu/'+this.id);
   }  
 }

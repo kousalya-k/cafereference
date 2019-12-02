@@ -18,6 +18,9 @@ url:string='';
     return this.httpClient.get<Orders[]>('http://10.231.136.18:5000//ordersbycounter'+"/"+counterId);
     
   }
+  getCounterById(id:string){
+    return this.httpClient.get<Counter>("http://10.231.139.34:7001/counters/"+id);
+  }
   getCounter() {
     console.log("test call");
     
@@ -40,18 +43,4 @@ url:string='';
     console.log(this.url)
     return this.httpClient.put<string>(this.url,0);
   }
-
-//   public deleteModule(m) {
-//     return this.httpClient.delete<Orders>("http://localhost:8079/modules" + "/" + m.code);
-//   }
-
-//   public createModule(m) {
-//     return this.httpClient.post<Orders>("http://localhost:8079/modules", m);
-//   }
-
-  
-
-//   public editModule(m){
-//     return this.httpClient.put<Orders>("http://localhost:8079/modules" + "/",m.id);
-//   }
 }

@@ -31,18 +31,18 @@ export class Orders {
   }
   export class Menu{
       constructor(
-      public id:string,
       public counter:Counter,
-      public selectCuisine:string,
+      public date:string,
+      //public selectCuisine:string,
       public  menuList:Item[]
       ){}
       }
-export class You{
-        constructor(
-            public id:string,
-            public lis:string[]
-        ){}
-    }
+// export class You{
+//         constructor(
+//             public id:string,
+//             public lis:string[]
+//         ){}
+//     }
     export class ItemQuantity{
         id:string;
         item:Item;

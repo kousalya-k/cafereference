@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Item, } from '../modal';
+import { Item, Counter, } from '../modal';
 import { CreateService } from './createService';
-import { FormBuilder, FormArray, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder} from '@angular/forms';
+import { OrderService } from '../order/OrderService';
+import { SessionStorageService } from 'angular-web-storage';
 
 @Component({
   selector: 'app-createmenu',
@@ -10,47 +12,43 @@ import { FormBuilder, FormArray, FormControl, FormGroup } from '@angular/forms';
 })
 
 export class CreatemenuComponent implements OnInit {
-
+  counter: Counter;
+  radio:string;
   items: Item[];
   selItems: Item[] = [];
   ids: string[] = [];
   form;
-  cuisineid:string[]=[];
-  user = {
-    skills: [
-      { name: "NI", selected: false, },
-      { name: "SI", selected: false, },
-      { name: "Chinese", selected: false, },
-    ]
-  }
-  constructor(private itemService: CreateService, private fb: FormBuilder) {
-    this.form = this.fb.group({
-      skills: this.buildSkills()
-
-    });
-    console.log(this.form.get("skills"))
+  counters:Counter[];
+  email:string;
+  counterId:string;
+  date:Date = new Date();
+ 
+  constructor(private session: SessionStorageService,private itemService: CreateService, private fb: FormBuilder, private orderService: OrderService) {
+  
 
   }
 
-  get skills() {
-    return this.form.get('skills');
-  };
-
+  
   ngOnInit() {
+    console.log("init")
     this.itemService.getItems().subscribe(response => this.handleSuccessfulResponse(response));
 
   }
-  buildSkills() {
-    const arr = this.user.skills.map(skill => {
-      return this.fb.control(skill.selected);
-    });
-    return this.fb.array(arr);
-  }
-
+ 
 
   handleSuccessfulResponse(response) {
+    console.log("handling")
     this.items = response;
     console.log(this.items)
+    this.email = sessionStorage.getItem('username');
+    for (var i in this.counters) {
+      if (this.counters[i].counterEmail === this.email) {
+
+        this.counterId = (this.counters[i].id);
+        
+        console.log("this.counters[i].id" + this.counters[i].id)
+      }
+    }
   }
 
 
@@ -68,11 +66,15 @@ export class CreatemenuComponent implements OnInit {
     this.selItems.push(response);
   }
 
-  confirm() {
+ 
+
+  confirm(){
+    console.log("success");
+    this.counter = this.session.get("counter");
     console.log((this.ids.length))
     if (this.ids.length) {
       alert("Once submitted Not able to change!!!!")
-      this.itemService.createMenu(this.ids).subscribe(data => {
+      this.itemService.createMenu(this.selItems,this.counter,this.date.toString()).subscribe(data => {
         alert("created!");
       });
     }
@@ -87,41 +89,13 @@ export class CreatemenuComponent implements OnInit {
     this.selItems = this.selItems.filter((item) => item.id !== Itemid);
 
   }
-  submit(form) {
-    const formValue = Object.assign({}, form, {
-      
-      skills: form.skills.map((selected, i) => {
-        console.log(this.user.skills[i].selected)
-       
-        return {
-          id: this.user.skills[i].name,
-          selected,
-         
-        }
-      }),
-    })
-    console.log("Skills in Submit" + formValue);
-    console.log(formValue);
-    skills: form.skills.map((selected, i) => {
-      console.log(formValue.skills[i].selected)
-      console.log(formValue);
-    if(formValue.skills[i].selected==true){
-      
-      console.log(formValue.skills[i].id)
-       this.cuisineid.push(formValue.skills[i].id)
-       console.log("after push "+this.cuisineid)}
-       console.log("after push"+typeof(this.cuisineid))
-       this.itemService.getItemsbyCuisine(this.cuisineid).subscribe(response => this.handleSuccessfulResponse(response));
+  submit() {
+   
+       this.itemService.getItemsbyCuisine(this.radio).subscribe(response => this.handleSuccessfulResponse(response));
       
 
   }
- 
-    )
 }
-
- 
-  }
-
 
 
 

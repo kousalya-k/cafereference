@@ -9,7 +9,7 @@ import { Menu } from '../modal';
 })
 export class ListmenuComponent implements OnInit {
   
-  menus:Menu[]
+  menus:Menu[]=[];
   constructor(private mService: ListService ) {}
 
   ngOnInit() {
@@ -17,7 +17,7 @@ export class ListmenuComponent implements OnInit {
 
   }
   handleSuccessfulResponse(response) {
-    this.menus = response;
+    this.menus.push(response);
     console.log(this.menus)
 }
 }

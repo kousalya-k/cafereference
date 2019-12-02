@@ -4,6 +4,7 @@ import { Orders } from '../modal'
 import { Counter } from '../modal'
 import { ActivatedRoute } from '@angular/router';
 import { timer, Observable, interval, Subscription } from 'rxjs';
+import { SessionStorageService } from 'angular-web-storage';
 
 @Component({
   selector: 'app-order',
@@ -12,18 +13,19 @@ import { timer, Observable, interval, Subscription } from 'rxjs';
 })
 export class OrderComponent implements OnInit {
 
-  private updateSubscription: Subscription;
+  //private updateSubscription: Subscription;
   timeLeft: number;
   subscription: Subscription;
   counters: Counter[];
   email: string;
   orders: Orders[];
-  constructor(private oService: OrderService) { }
+  counterId:string;
+
+  constructor(private oService: OrderService,private session: SessionStorageService) { }
 
 
   ngOnInit() {
-    // this.updateSubscription = interval(5000).subscribe(
-    //   (val) => { this.updateStats()});
+   
     this.oService.getCounter().subscribe(response => this.SuccessfulResponse(response));
 
 
@@ -34,7 +36,7 @@ export class OrderComponent implements OnInit {
     this.oberservableTimer()
   }
   oberservableTimer() {
-    //var sound = new Howl({
+    
     this.timeLeft = 5;
     var source = timer(1000, 1000);
     this.subscription = source.subscribe(val => {
@@ -43,37 +45,29 @@ export class OrderComponent implements OnInit {
       if (this.timeLeft === 0) {
         this.oService.getOrders(this.counterId).subscribe(response => this.handleSuccessfulResponse(response));
         this.subscription.unsubscribe()
-        // console.log('cabooz'); //trigger the boolean flag to show the countdown
-        //sound.play();
+
 
         this.call();
       }
     });
   }
-  counterId(counterId: any) {
-    throw new Error("Method not implemented.");
-  }
-
-  //   ngOnDestroy() {
-  //     this.updateSubscription.unsubscribe();
-  //   }
-  //   private updateStats() {
-  //     this.oService.getOrders(this.counterId).subscribe(response => this.handleSuccessfulResponse(response));
-  //     console.log('I am doing something every second');
-  // }
+ 
+ 
   SuccessfulResponse(response) {
     console.log("inside successful response")
     this.counters = response;
-    console.log(this.counters)
-    this.email = sessionStorage.getItem('username');
-    for (var i in this.counters) {
-      if (this.counters[i].counterEmail === this.email) {
+    // console.log(this.counters)
+    // this.email = sessionStorage.getItem('username');
+    // for (var i in this.counters) {
+    //   if (this.counters[i].counterEmail === this.email) {
 
-        this.counterId = (this.counters[i].id);
-        console.log("this.counters[i].id" + this.counters[i].id)
-      }
-    }
-    console.log("Logged Counter Id " + this.counterId)
+    //     this.counterId = (this.counters[i].id);
+
+    //     console.log("this.counters[i].id" + this.counters[i].id)
+    //   }
+    // }
+    // console.log("Logged Counter Id " + this.counterId)
+    this.counterId=this.session.get("counterId");
     this.oService.getOrders(this.counterId).subscribe(response => this.handleSuccessfulResponse(response));
     this.oberservableTimer()
   }
@@ -81,17 +75,17 @@ export class OrderComponent implements OnInit {
   handleSuccessfulResponse(response) {
     console.log("inside get orders")
     this.orders = response;
-    this.orders.forEach(element => {
-      console.log("insideelement")
-      console.log(element);
-    });
-    console.log("orders " + this.orders)
-    for (var i in this.orders) {
-      for (var j in this.orders[i].listItems) {
-        console.log(this.orders[i].listItems[j].item.itemName)
-      }
+    // this.orders.forEach(element => {
+    //   console.log("insideelement")
+    //   console.log(element);
+    // });
+    // console.log("orders " + this.orders)
+    // for (var i in this.orders) {
+    //   for (var j in this.orders[i].listItems) {
+    //     console.log(this.orders[i].listItems[j].item.itemName)
+    //   }
 
-    }
+    // }
   }
 
   accept(id: string) {

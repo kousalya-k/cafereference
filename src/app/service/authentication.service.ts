@@ -16,11 +16,14 @@ export class AuthenticationService {
   getCounters(){
     return this.httpClient.get<Counter[]>('http://10.231.139.34:7001/counters');
   }
+  getCounter(username: string){
+    return this.httpClient.get<Counter>("http://10.231.139.34:7001/counterss/"+username);
+  }
   handleSuccessfulResponse(response) {
     this.counters=(response);
-    
+    console.log(this.counters)
     for(var i in this.counters){
-      
+      console.log(this.counters[i].counterEmail)
       this.email.push(this.counters[i].counterEmail);
       this.pwd.push(this.counters[i].counterPassword);
       //console.log("Inside created place "+this.email);

@@ -9,11 +9,13 @@
       
     </div><br>
     <button type="submit" class="btn btn-primary btn-small" (click)="filter()" >Filter</button> -->
-    <form [formGroup]="form" (submit)="submit(form.value)">
+    <form  (submit)="submit()">
         <table>
             <tr>
-            <td *ngFor="let skill of skills.controls; let i=index">
-             <input type="checkbox" [formControl]="skill" value="{{user.skills[i].name}}"/> {{user.skills[i].name}} &nbsp;&nbsp;
+            <td >
+             <input type="radio" name="radio"  value="NI" [(ngModel)]="radio"> North Indian &nbsp;&nbsp;
+             <input type="radio" name="radio"  value="SI" [(ngModel)]="radio"> South Indian &nbsp;&nbsp;
+             <input type="radio" name="radio" value="Chinese"[(ngModel)]="radio"> Chinese &nbsp;&nbsp;
             </td>
             &nbsp; <button type="submit" class="btn btn-outline-info  btn-sm">Filter</button></tr>  
         </table>

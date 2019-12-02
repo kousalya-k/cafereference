@@ -11,6 +11,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { CreatemenuComponent } from './createmenu/createmenu.component';
 import { ListmenuComponent } from './listmenu/listmenu.component';
 import { LogoutComponent } from './logout/logout.component';
+import { AngularWebStorageModule } from 'angular-web-storage';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { LogoutComponent } from './logout/logout.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    AngularWebStorageModule,
     HttpClientModule,
     ReactiveFormsModule
   ],
