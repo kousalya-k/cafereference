@@ -26,13 +26,13 @@ export class LoginComponent implements OnInit {
     } else
       this.invalidLogin = true
   }
-  success(resp){
-    console.log("success counter: "+resp);
-    this.session.set("counter",resp);
-    console.log("j"+resp.id)
-    this.session.set("counterId",resp.id)
-    console.log("session user: "+this.session.get("counter"));
+  success(resp) {
+    console.log("success counter: " + resp);
+    this.session.set("counter", resp);
+    console.log("j" + resp.id)
+    this.session.set("counterId", resp.id)
+    console.log("session user: " + this.session.get("counter"));
     this.router.navigate(['order'])
-      this.invalidLogin = false
+    this.invalidLogin = false
   }
 }

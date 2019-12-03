@@ -6,66 +6,63 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class AuthenticationService {
- counters:Counter[]=[];
- email:String[]=[];
- pwd:String[]=[];
- flag:number=0;
+  counters: Counter[] = [];
+  email: String[] = [];
+  pwd: String[] = [];
+  flag: number = 0;
 
-  constructor(private httpClient: HttpClient,) {  this.getCounters().subscribe(response => this.handleSuccessfulResponse(response));
+  constructor(private httpClient: HttpClient, ) {
+    this.getCounters().subscribe(response => this.handleSuccessfulResponse(response));
   }
-  getCounters(){
-    return this.httpClient.get<Counter[]>('http://10.231.139.34:7001/counters');
+  getCounters() {
+    return this.httpClient.get<Counter[]>('http://10.234.209.84:7001/counters');
   }
-  getCounter(username: string){
-    return this.httpClient.get<Counter>("http://10.231.139.34:7001/counterss/"+username);
+  getCounter(username: string) {
+    return this.httpClient.get<Counter>("http://10.234.209.84:7001/counterss/" + username);
   }
   handleSuccessfulResponse(response) {
-    this.counters=(response);
+    this.counters = (response);
     console.log(this.counters)
-    for(var i in this.counters){
+    for (var i in this.counters) {
       console.log(this.counters[i].counterEmail)
       this.email.push(this.counters[i].counterEmail);
       this.pwd.push(this.counters[i].counterPassword);
       //console.log("Inside created place "+this.email);
     }
   }
-  
+
   authenticate(username, password) {
     //console.log("Username "+username)
 
-   
-  
-    for(var i in this.email)
-    {
+
+
+    for (var i in this.email) {
       //console.log("Enters for ")
       //console.log(this.email[i])
-      if(this.email[i] === username )
-      {
-          //console.log("username correct")
-          if(this.pwd[i]===password)
-          {
-           // console.log("pwd correct")
-            //enters
-            sessionStorage.setItem('username', username)
-            this.flag=1;
-             return true;
-            
-            alert("Enters :)")
-          }
-          else
-          {
-            alert("Wrong Password")
-            return false;
-         
-          }
+      if (this.email[i] === username) {
+        //console.log("username correct")
+        if (this.pwd[i] === password) {
+          // console.log("pwd correct")
+          //enters
+          sessionStorage.setItem('username', username)
+          this.flag = 1;
+          return true;
+
+          alert("Enters :)")
+        }
+        else {
+          alert("Wrong Password")
+          return false;
+
+        }
       }
-     
+
 
     }
-    if(this.flag===0){
+    if (this.flag === 0) {
       alert("invalid username")
       return false;
-      
+
     }
 
 
@@ -76,7 +73,7 @@ export class AuthenticationService {
     //   return false;
     // }
   }
- 
+
 
   isUserLoggedIn() {
     let user = sessionStorage.getItem('username')

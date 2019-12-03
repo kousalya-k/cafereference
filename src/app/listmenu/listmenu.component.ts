@@ -8,9 +8,9 @@ import { Menu } from '../modal';
   styleUrls: ['./listmenu.component.css']
 })
 export class ListmenuComponent implements OnInit {
-  
-  menus:Menu[]=[];
-  constructor(private mService: ListService ) {}
+
+  menus: Menu[] = [];
+  constructor(private mService: ListService) { }
 
   ngOnInit() {
     this.mService.getMenus().subscribe(response => this.handleSuccessfulResponse(response));
@@ -19,5 +19,5 @@ export class ListmenuComponent implements OnInit {
   handleSuccessfulResponse(response) {
     this.menus.push(response);
     console.log(this.menus)
-}
+  }
 }

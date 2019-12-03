@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Item, Counter, } from '../modal';
 import { CreateService } from './createService';
-import { FormBuilder} from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { OrderService } from '../order/OrderService';
 import { SessionStorageService } from 'angular-web-storage';
 
@@ -13,28 +13,26 @@ import { SessionStorageService } from 'angular-web-storage';
 
 export class CreatemenuComponent implements OnInit {
   counter: Counter;
-  radio:string;
+  radio: string;
   items: Item[];
   selItems: Item[] = [];
   ids: string[] = [];
   form;
-  counters:Counter[];
-  email:string;
-  counterId:string;
-  date:Date = new Date();
- 
-  constructor(private session: SessionStorageService,private itemService: CreateService, private fb: FormBuilder, private orderService: OrderService) {
-  
+  counters: Counter[];
+  email: string;
+  counterId: string;
+  date: Date = new Date();
+
+  constructor(private session: SessionStorageService, private itemService: CreateService, private fb: FormBuilder, private orderService: OrderService) {
+
 
   }
-
-  
   ngOnInit() {
     console.log("init")
     this.itemService.getItems().subscribe(response => this.handleSuccessfulResponse(response));
 
   }
- 
+
 
   handleSuccessfulResponse(response) {
     console.log("handling")
@@ -45,7 +43,7 @@ export class CreatemenuComponent implements OnInit {
       if (this.counters[i].counterEmail === this.email) {
 
         this.counterId = (this.counters[i].id);
-        
+
         console.log("this.counters[i].id" + this.counters[i].id)
       }
     }
@@ -66,15 +64,15 @@ export class CreatemenuComponent implements OnInit {
     this.selItems.push(response);
   }
 
- 
 
-  confirm(){
+
+  confirm() {
     console.log("success");
     this.counter = this.session.get("counter");
     console.log((this.ids.length))
     if (this.ids.length) {
       alert("Once submitted Not able to change!!!!")
-      this.itemService.createMenu(this.selItems,this.counter,this.date.toString()).subscribe(data => {
+      this.itemService.createMenu(this.selItems, this.counter, this.date.toString()).subscribe(data => {
         alert("created!");
       });
     }
@@ -90,9 +88,9 @@ export class CreatemenuComponent implements OnInit {
 
   }
   submit() {
-   
-       this.itemService.getItemsbyCuisine(this.radio).subscribe(response => this.handleSuccessfulResponse(response));
-      
+
+    this.itemService.getItemsbyCuisine(this.radio).subscribe(response => this.handleSuccessfulResponse(response));
+
 
   }
 }

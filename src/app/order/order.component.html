@@ -14,31 +14,28 @@
         </thead>
         <tbody>
             <tr *ngFor="let o of orders">
-                <td>{{o.id}}</td>
+                    <td *ngIf="o.status !='Delivered'">{{o.id}}</td>
 
 
-                <td>{{o.user.name}}</td>
+                <td *ngIf="o.status !='Delivered'">{{o.user.name}}</td>
 
-                <td>
+                <td *ngIf="o.status !='Delivered'">
                     <div *ngFor="let i of o.items">{{i.item.itemName}}
                     </div>
                 </td>
-                <td>
+                <td *ngIf="o.status !='Delivered'">
                     <div *ngFor="let i of o.items">{{i.quant}}</div>
                 </td>
 
-
-
-
-
-
                 <div style="text-align: center;">
-                    <td><button class="btn btn-outline-primary btn-sm" (click)="accept(o.id)"> Accept</button></td>
-                    <td><button class="btn btn-outline-warning btn-sm" (click)="ready(o.id)"> Ready</button></td>
-                    <td><button class="btn btn-outline-success btn-sm" (click)="delivered(o.id)"> Delivered</button>
+                    <td *ngIf="o.status !='Delivered'"><button class="btn btn-outline-primary btn-sm" (click)="accept(o.id)"> Accept</button></td>
+                    <td *ngIf="o.status !='Delivered'"><button class="btn btn-outline-warning btn-sm" (click)="ready(o.id)"> Ready</button></td>
+                    <td *ngIf="o.status !='Delivered'"><button class="btn btn-outline-success btn-sm" (click)="delivered(o.id)"> Delivered</button>
                     </td>
                 </div>
 
+                
+                
             </tr>
 
 

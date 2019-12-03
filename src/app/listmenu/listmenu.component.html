@@ -1,44 +1,36 @@
-
 <br>
 <div class="container-fluid ">
-<div class="col-md-6 ">
+   
         <div class="row" *ngFor="let i of menus">
-             <div class="row  offset-2" >
-                    <div  style = "margin-top: 1cm;">
-                            <strong>Menu Id: </strong>{{i.id}}
-                        </div>
-                        <!-- <div>
-                            <h2>Track Code: {{t.code}}</h2>
-                        </div>
-                        <span> {{i.id}}</span> -->
-             
-              </div> 
+            <div class="row  offset-2">
+                <div style="margin-top: 1cm;">
+                  
+                    <strong>Menu Id: </strong>{{i.id}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <strong>Date :</strong>{{i.date}}
+                </div>
+            </div>
         </div>
         <div class="row">
+                
             <br>
             <br>
         </div>
+        <div class="col-md-6 offset-2 ">
         <div class="row" *ngFor="let i of menus">
-                <!-- <div class="col-md-12"> -->
-                        <table class="table table-striped offset-2">
-                                <thead>
-                                    <th >Item </th>
-                                    <th >Description</th>
-                                    <th >Price</th>
-                                </thead>
-                                <tbody>
-                                    <tr *ngFor="let k of i.menuList">
-                                        <td>{{k.itemName}}</td>
-                                        <td>{{k.itemDesc}}</td>
-                                        <td>{{k.itemPrice}}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                <!-- </div> -->
-                    
-            </div>
-    
+            <table class="table table-striped offset-2">
+                <thead>
+                    <th>Item </th>
+                    <th>Description</th>
+                    <th>Price</th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let k of i.menuList">
+                        <td>{{k.itemName}}</td>
+                        <td>{{k.itemDesc}}</td>
+                        <td>{{k.itemPrice}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
-
-    
